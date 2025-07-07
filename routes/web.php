@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopifyWebhookController;
+use Osiset\ShopifyApp\Contracts\ShopModel as Shop;
+use Osiset\ShopifyApp\Objects\Transfers\Charge;
 
 Route::middleware(['verify.shopify'])->group(function () {
     Route::get('/', function () {
@@ -19,22 +21,22 @@ Route::middleware(['verify.shopify'])->group(function () {
 |
 */
 
-Route::middleware(['verify.shopify'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
-});
+// Route::middleware(['verify.shopify'])->group(function () {
+//     Route::get('/', function () {
+//         return view('welcome');
+//     });
+// });
 
-Route::get('/billing/callback', function () {
-    $shop = \Shopify\Models\Shop::where('shopify_domain', request('shop'))->first();
-    $charge = new \Shopify\Services\Billing\RecurringCharge($shop);
+// Route::get('/billing/callback', function () {
+//     $shop = Shop::where('shopify_domain', request('shop'))->first();
+//     $charge = new Charge($shop);
 
-    $activated = $charge->activate(request('charge_id'));
-    if ($activated) {
-        return redirect('/')->with('success', 'App installed and billing activated');
-    }
-    return redirect('/')->with('error', 'Billing activation failed');
-});
+//     $activated = $charge->activate(request('charge_id'));
+//     if ($activated) {
+//         return redirect('/')->with('success', 'App installed and billing activated');
+//     }
+//     return redirect('/')->with('error', 'Billing activation failed');
+// });
 
 
 Route::post('/shopify/webhook/customers/data_request', [ShopifyWebhookController::class, 'dataRequest']);
