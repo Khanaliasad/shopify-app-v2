@@ -384,21 +384,6 @@ return [
     |
     */
 
-    'webhooks' => [
-        [
-            'topic' => 'shop/redact',
-            'address' => '/shopify/webhook/shop/redact',
-        ],
-        [
-            'topic' => 'customers/redact',
-            'address' => '/shopify/webhook/customers/redact',
-        ],
-        [
-            'topic' => 'customers/data_request',
-            'address' => '/shopify/webhook/customers/data_request',
-        ],
-    ],
-
     'billing' => [
         'enabled' => true,
         'type' => 'RECURRING',
@@ -410,24 +395,38 @@ return [
         'terms' => 'Monthly subscription to XYZ app',
     ],
 
-    // 'webhooks' => [
+    'webhooks' => [
 
-    //     /*
-    //         [
-    //             'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'ORDERS_CREATE'),
-    //             'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://some-app.com/webhook/orders-create')
-    //         ], [
-    //             'topic' => env('SHOPIFY_WEBHOOK_2_TOPIC', 'APP_PURCHASES_ONE_TIME_UPDATE'),
-    //             'address' => env('SHOPIFY_WEBHOOK_2_ADDRESS', 'https://some-app.com/webhook/purchase'),
-    //         ]
-    //         // In certain situations you may wish to map the webhook to a specific class
-    //         // To do this, change the array to an associative array with a 'class' key
-    //         'orders-create' => [
-    //             'topic' => env('SHOPIFY_WEBHOOK_3_TOPIC', 'ORDERS_PAID'),
-    //             'address' => env('SHOPIFY_WEBHOOK_3_ADDRESS', 'https://some-app.com/webhook/orders-create'),
-    //             'class' => \App\Shopify\Actions\ExampleAppJob::class
-    //         ],
-    //     */],
+
+            [
+                'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'shop/redact'),
+                'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://connector.bifrosterp.com/webhook/shop-redact')
+            ], [
+                'topic' => env('SHOPIFY_WEBHOOK_2_TOPIC', 'customers/redact'),
+                'address' => env('SHOPIFY_WEBHOOK_2_ADDRESS', 'https://connector.bifrosterp.com/webhook/customers-redact'),
+            ],
+            [
+                'topic' => env('SHOPIFY_WEBHOOK_3_TOPIC', 'customers/data_request'),
+                'address' => env('SHOPIFY_WEBHOOK_3_ADDRESS', 'https://connector.bifrosterp.com/webhook/customers-data-request'),
+            ],
+
+              /*
+                [
+                    'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'ORDERS_CREATE'),
+                    'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://some-app.com/webhook/orders-create')
+                ], [
+                    'topic' => env('SHOPIFY_WEBHOOK_2_TOPIC', 'APP_PURCHASES_ONE_TIME_UPDATE'),
+                    'address' => env('SHOPIFY_WEBHOOK_2_ADDRESS', 'https://some-app.com/webhook/purchase'),
+                ]
+                // In certain situations you may wish to map the webhook to a specific class
+                // To do this, change the array to an associative array with a 'class' key
+                'orders-create' => [
+                    'topic' => env('SHOPIFY_WEBHOOK_3_TOPIC', 'ORDERS_PAID'),
+                    'address' => env('SHOPIFY_WEBHOOK_3_ADDRESS', 'https://some-app.com/webhook/orders-create'),
+                    'class' => \App\Shopify\Actions\ExampleAppJob::class
+                ],
+            */
+        ],
 
     /*
     |--------------------------------------------------------------------------
