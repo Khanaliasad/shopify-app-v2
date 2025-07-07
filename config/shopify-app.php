@@ -538,7 +538,7 @@ return [
         /*
         * The fully qualified class name of the Plan model.
         */
-        'plan' => Osiset\ShopifyApp\Storage\Models\Plan::class,
+        'plan' => App\Models\Shop::class,
     ],
 
     'table_names' => [
